@@ -15,7 +15,7 @@
             <span class="badge">Estudio Boutique</span>
             <h1 class="logo-glow">FLORESTA MUSIC</h1>
             <p class="subtitle">ELEVANDO LOS BPM • BAJANDO LA FRECUENCIA</p>
-            
+
             <!-- AQUI SE DEBEN VINCULAR LOS HTML DE VINILOS, CDS E INSTRUMENTOS -->
             <nav class="apple-nav">
                 <a href="" target="contentFrame" class="nav-link">Vinilos</a>
@@ -27,14 +27,14 @@
 
     <main class="main-stage">
         <div class="iphone-window" id="view-section">
-            
+
             <div class="window-bar">
                 <div class="dots">
                     <span class="dot red" onclick="closeWindow()" title="Cerrar"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green" onclick="toggleFullScreen()" title="Maximizar"></span>
                 </div>
-                
+
                 <p id="frame-title">Explorando / <span id="active-category">Inicio</span></p>
             </div>
 
@@ -43,7 +43,7 @@
                     <span></span><span></span><span></span>
                 </div>
             </div>
-            
+
             <!-- AQUI SE DEBEN VINCULAR LOS HTML DE VINILOS, CDS E INSTRUMENTOS -->
             <div class="side-menu">
                 <h3 class="side-menu-title">NAVEGACIÓN</h3>
@@ -63,8 +63,22 @@
         </div>
     </footer>
 
+    <script src="effects.js"></script>
+    <script>
+        // Lógica rápida para actualizar el título amarillo desde el menú lateral
+        document.querySelectorAll('.side-link').forEach(link => {
+            link.addEventListener('click', function () {
+                const categoria = this.innerText;
+                document.getElementById('active-category').innerText = categoria;
 
-
+                // Sincronizar también el resaltado de los botones de arriba
+                document.querySelectorAll('.nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                    if (nav.innerText === categoria) nav.classList.add('active');
+                });
+            });
+        });
+    </script>
 
 </body>
 
