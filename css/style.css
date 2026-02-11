@@ -141,16 +141,93 @@ iframe {
 /* --- ESTILOS PARA EL INTERIOR DEL IFRAME --- */
 
 /* Título interno */
+.inner-title {
+    padding: 40px 0 20px;
+    text-align: center;
+    color: var(--apple-accent);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--oro-glow);
+}
 
 /* Contenedor Grid */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 40px 60px;
+    background: transparent;
+}
 
 /* La Carta (Estilo Apple Glass) */
+.card-item {
+    background: var(--apple-card);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--apple-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
 
 /* Imagen del producto */
+.portada img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.card-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
 
 /* Precio con Glow */
+.precio {
+    color: var(--apple-accent);
+    font-weight: 900;
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--oro-glow);
+}
 
 /* Botón con el Glow original de Florestina */
+.btn-add, summary {
+    background: var(--apple-accent);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px var(--oro-glow);
+    list-style: none; /* Para el summary */
+}
+
+.btn-add:hover, summary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--apple-accent);
+}
 
 /* Detalles desplegables */
 
