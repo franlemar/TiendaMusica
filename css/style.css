@@ -1,0 +1,57 @@
+:root {
+  --apple-bg: #000000;
+  --apple-card: rgba(28, 28, 30, 0.85);
+  --apple-accent: #ffd633;
+  --oro-glow: rgba(255, 214, 51, 0.5);
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--apple-bg);
+  color: var(--text-primary);
+  font-family: -apple-system, "Montserrat", sans-serif;
+  line-height: 1.5;
+}
+
+.background-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('header.png') no-repeat center center/cover;
+  z-index: -1;
+}
+
+/* HEADER - Espaciado corregido para evitar solapamientos */
+
+/* BOTONES - Distribución Apple */
+
+/* VENTANA APPLE */
+
+/* FOOTER */
+
+/* --- ESTILOS PARA EL INTERIOR DEL IFRAME --- */
+
+/* Título interno */
+
+/* Contenedor Grid */
+
+/* La Carta (Estilo Apple Glass) */
+
+/* Imagen del producto */
+
+/* Precio con Glow */
+
+/* Botón con el Glow original de Florestina */
+
+/* Detalles desplegables */
+
+
+/* BOTONES AMARILLOS CON GLOW */
+
+
+/* QUITAR BARRA DE CHROME Y BORDES DEL IFRAME */
+
+
+/* Estilo de Cartas dentro del Iframe */
