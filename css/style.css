@@ -24,12 +24,119 @@ body {
 }
 
 /* HEADER - Espaciado corregido para evitar solapamientos */
+.hero-header {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.logo-glow {
+  font-size: clamp(3rem, 12vw, 6.5rem);
+  font-weight: 900;
+  color: var(--apple-accent);
+  text-shadow: 0 0 25px var(--oro-glow);
+  letter-spacing: -3px;
+  margin-bottom: 10px;
+}
+
+.badge { color: var(--apple-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; }
+.subtitle { color: var(--text-secondary); letter-spacing: 5px; font-size: 0.9rem; text-transform: uppercase; }
 
 /* BOTONES - Distribución Apple */
+.apple-nav {
+  margin-top: 50px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 14px 35px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  font-weight: 600;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  background: var(--apple-accent);
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--oro-glow);
+}
 
 /* VENTANA APPLE */
+.iphone-window {
+  width: 95%;
+  max-width: 1200px;
+  height: 80vh;
+  margin: 50px auto 100px;
+  background: var(--apple-card);
+  backdrop-filter: blur(40px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  display: none; /* Se activa con JS */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.iphone-window.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.window-bar {
+  background: rgba(0,0,0,0.6);
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.dots { display: flex; gap: 8px; margin-right: 20px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+#frame-title {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+#frame-title b { color: var(--apple-accent); }
+
+iframe {
+  width: 100%;
+  height: calc(100% - 50px);
+  border: none;
+}
 
 /* FOOTER */
+.apple-footer {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-line { width: 30px; height: 1px; background: var(--apple-accent); margin: 0 auto 20px; opacity: 0.4; }
 
 /* --- ESTILOS PARA EL INTERIOR DEL IFRAME --- */
 
