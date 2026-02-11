@@ -29,11 +29,19 @@
         <div class="iphone-window" id="view-section">
             
             <div class="window-bar">
+                <div class="dots">
+                    <span class="dot red" onclick="closeWindow()" title="Cerrar"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green" onclick="toggleFullScreen()" title="Maximizar"></span>
+                </div>
                 
+                <p id="frame-title">Explorando / <span id="active-category">Inicio</span></p>
             </div>
 
             <div class="side-menu-trigger">
-                
+                <div class="menu-hint-icon">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
             
             <div class="side-menu">
