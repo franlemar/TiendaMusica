@@ -1,3 +1,7 @@
+/* ==========================================================================
+   FLORESTA MUSIC - CORE STYLES (v2.0)
+   ========================================================================== */
+
 :root {
   --apple-bg: #000000;
   --apple-card: rgba(28, 28, 30, 0.85);
@@ -5,305 +9,448 @@
   --oro-glow: rgba(255, 214, 51, 0.5);
   --text-primary: #f5f5f7;
   --text-secondary: #86868b;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* 1. RESET Y LIMPIEZA DE SCROLLBARS
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none !important; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Edge */
+}
 
 body {
   background-color: var(--apple-bg);
   color: var(--text-primary);
-  font-family: -apple-system, "Montserrat", sans-serif;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Montserrat", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
+/* 2. BACKGROUND & OVERLAY
+   ========================================================================== */
 .background-overlay {
   position: fixed;
   inset: 0;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('header.png') no-repeat center center/cover;
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+    url('../img/header.png') no-repeat center center/cover;
   z-index: -1;
+  transform: scale(1.05);
 }
 
-/* HEADER - Espaciado corregido para evitar solapamientos */
+/* 3. HERO HEADER (PORTADA PRINCIPAL)
+   ========================================================================== */
 .hero-header {
-  min-height: 80vh;
+  min-height: 60vh; /* Ajustado para subir el iframe */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
+  transition: var(--transition-smooth);
+}
+
+.badge {
+  color: var(--apple-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  display: inline-block;
+  animation: fadeInDown 1s ease;
 }
 
 .logo-glow {
-  font-size: clamp(3rem, 12vw, 6.5rem);
+  font-size: clamp(3.5rem, 12vw, 6.5rem);
   font-weight: 900;
   color: var(--apple-accent);
-  text-shadow: 0 0 25px var(--oro-glow);
-  letter-spacing: -3px;
-  margin-bottom: 10px;
+  text-shadow: 0 0 30px var(--oro-glow);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 15px;
 }
 
-.badge { color: var(--apple-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; }
-.subtitle { color: var(--text-secondary); letter-spacing: 5px; font-size: 0.9rem; text-transform: uppercase; }
+.subtitle {
+  color: var(--text-secondary);
+  letter-spacing: 6px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  opacity: 0.8;
+}
 
-/* BOTONES - Distribución Apple */
+/* 4. NAVEGACIÓN (BOTONES AMARILLOS)
+   ========================================================================== */
 .apple-nav {
-  margin-top: 50px;
   display: flex;
   gap: 20px;
-  justify-content: center;
+  margin-top: 40px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-link {
-  color: white;
+  color: #fff !important;
   text-decoration: none;
   padding: 14px 35px;
-  border-radius: 100px;
+  border-radius: 50px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1);
-  font-weight: 600;
-  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 .nav-link:hover {
-  background: var(--apple-accent);
-  color: black;
-  transform: scale(1.05);
-  box-shadow: 0 0 20px var(--oro-glow);
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--apple-accent);
 }
 
-/* VENTANA APPLE */
+/* ESTADO ACTIVO (BOTÓN SELECCIONADO) */
+.nav-link.active {
+  background: var(--apple-accent) !important;
+  color: #000 !important;
+  box-shadow: 0 0 25px var(--oro-glow);
+  border-color: var(--apple-accent);
+  transform: scale(1.05);
+}
+
+/* 5. VENTANA ESTILO APPLE (IFRAME CONTAINER)
+   ========================================================================== */
+.main-stage {
+  width: 100%;
+  padding-bottom: 100px;
+}
+
 .iphone-window {
   width: 95%;
   max-width: 1200px;
   height: 80vh;
-  margin: 50px auto 100px;
+  margin: 0 auto;
   background: var(--apple-card);
   backdrop-filter: blur(40px);
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.1);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 28px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 50px 100px rgba(0,0,0,0.5);
   overflow: hidden;
-  display: none; /* Se activa con JS */
+  position: relative;
+  
+  /* Animación de entrada/salida */
+  display: none;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
+  transform: scale(0.96) translateY(40px);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .iphone-window.visible {
   display: block;
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1) translateY(0);
 }
 
+/* 6. BARRA DE VENTANA (WINDOW BAR)
+   ========================================================================== */
 .window-bar {
-  background: rgba(0,0,0,0.6);
-  padding: 15px 25px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 10;
 }
 
-.dots { display: flex; gap: 8px; margin-right: 20px; }
-.dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+.dots {
+  display: flex;
+  gap: 10px;
+  z-index: 11;
+}
 
+.dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dot:hover { transform: scale(1.15); }
+
+.red { background: #ff5f56; border: 0.5px solid rgba(0,0,0,0.1); }
+.yellow { background: #ffbd2e; border: 0.5px solid rgba(0,0,0,0.1); }
+.green { background: #27c93f; border: 0.5px solid rgba(0,0,0,0.1); }
+
+/* Tí­tulo de la barra centrado */
 #frame-title {
-  font-size: 0.75rem;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-secondary);
+  pointer-events: none;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
-#frame-title b { color: var(--apple-accent); }
+#active-category {
+  color: var(--apple-accent);
+  font-weight: 800;
+}
 
+/* 7. MENÃš LATERAL PLEGABLE (SIDE MENU)
+   ========================================================================== */
+.side-menu-trigger {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  width: 15px;
+  z-index: 100;
+  cursor: e-resize;
+}
+
+.side-menu {
+  position: absolute;
+  left: -240px;
+  top: 50px;
+  bottom: 0;
+  width: 240px;
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  z-index: 99;
+  padding: 30px 20px;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* El menú solo se activa al rozar el borde en FULLSCREEN o si el usuario quiere */
+.iphone-window:fullscreen .side-menu-trigger:hover + .side-menu,
+.iphone-window:fullscreen .side-menu:hover {
+  left: 0;
+}
+
+.side-menu-title {
+  font-size: 0.65rem;
+  color: var(--apple-accent);
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.side-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.side-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--apple-accent);
+}
+
+/* 8. IFRAME Y CONTENIDO INTERNO
+   ========================================================================== */
 iframe {
   width: 100%;
   height: calc(100% - 50px);
-  border: none;
-}
-
-/* FOOTER */
-.apple-footer {
-  padding: 80px 20px;
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.footer-line { width: 30px; height: 1px; background: var(--apple-accent); margin: 0 auto 20px; opacity: 0.4; }
-
-/* --- ESTILOS PARA EL INTERIOR DEL IFRAME --- */
-
-/* Título interno */
-.inner-title {
-    padding: 40px 0 20px;
-    text-align: center;
-    color: var(--apple-accent);
-    font-size: 2.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px var(--oro-glow);
-}
-
-/* Contenedor Grid */
-.grid-productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 20px 40px 60px;
-    background: transparent;
-}
-
-/* La Carta (Estilo Apple Glass) */
-.card-item {
-    background: var(--apple-card);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 25px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-item:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.07);
-    border-color: var(--apple-accent);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Imagen del producto */
-.portada img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-.card-item h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: var(--text-primary);
-}
-
-/* Precio con Glow */
-.precio {
-    color: var(--apple-accent);
-    font-weight: 900;
-    font-size: 1.3rem;
-    display: block;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px var(--oro-glow);
-}
-
-/* Botón con el Glow original de Florestina */
-.btn-add, summary {
-    background: var(--apple-accent);
-    color: #000;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 15px var(--oro-glow);
-    list-style: none; /* Para el summary */
-}
-
-.btn-add:hover, summary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--apple-accent);
-}
-
-/* Detalles desplegables */
-details {
-    width: 100%;
-    margin-top: 15px;
-}
-
-details p {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    padding-top: 10px;
-    line-height: 1.4;
-}
-:root {
-  --apple-bg: #000000;
-  --apple-card: rgba(28, 28, 30, 0.85);
-  --apple-accent: #ffd633;
-  --oro-glow: rgba(255, 214, 51, 0.6);
-  --text-primary: #f5f5f7;
-  --text-secondary: #86868b;
-}
-
-/* BOTONES AMARILLOS CON GLOW */
-.nav-link {
-  color: #000 !important; /* Texto negro para contraste */
-  text-decoration: none;
-  padding: 14px 35px;
-  border-radius: 100px;
-  background: var(--apple-accent) !important; /* Fondo Amarillo */
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  box-shadow: 0 0 15px var(--oro-glow); /* Glow original */
-  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-}
-
-.nav-link:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px var(--apple-accent);
-}
-
-/* QUITAR BARRA DE CHROME Y BORDES DEL IFRAME */
-.iphone-window {
-  width: 95%;
-  max-width: 1200px;
-  height: 85vh;
-  margin: 40px auto;
-  background: var(--apple-card);
-  backdrop-filter: blur(40px);
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-  overflow: hidden; /* Esto oculta cualquier scroll rebelde */
-  display: none; 
-  opacity: 0;
-  transition: all 0.8s ease;
-}
-
-iframe {
-  width: 100%;
-  height: 100%; /* Ocupa todo el espacio, eliminando huecos */
   border: none;
   display: block;
   background: transparent;
 }
 
-/* Estilo de Cartas dentro del Iframe */
+/* Estilos inyectados para el grid dentro de las subpáginas */
+.inner-title {
+  padding: 50px 20px 30px;
+  text-align: center;
+  color: var(--apple-accent);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
 .card-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 22px;
-    padding: 20px;
-    transition: 0.4s;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
 .card-item:hover {
-    border-color: var(--apple-accent);
-    box-shadow: 0 0 20px var(--oro-glow);
+  transform: translateY(-10px);
+  border-color: var(--apple-accent);
 }
+
+.portada img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+/* 9. MODO PANTALLA COMPLETA (FULLSCREEN)
+   ========================================================================== */
+.iphone-window:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  border-radius: 0;
+  margin: 0;
+  border: none;
+}
+
+.iphone-window:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* 10. FOOTER
+   ========================================================================== */
+.apple-footer {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.footer-line {
+  width: 40px;
+  height: 2px;
+  background: var(--apple-accent);
+  margin: 0 auto 25px;
+  opacity: 0.5;
+}
+
+.footer-content p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+/* 11. ANIMACIONES
+   ========================================================================== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 12. RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-header { min-height: 50vh; }
+  .logo-glow { font-size: 3rem; }
+  .iphone-window { width: 98%; height: 70vh; }
+  .nav-link { padding: 10px 20px; font-size: 0.65rem; }
+  .grid-productos { padding: 20px; }
+}
+/* --- ICONO INDICADOR DEL MENÚ --- */
+.side-menu-trigger {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    bottom: 0;
+    width: 40px; /* Un poco más ancho para detectar mejor el ratón */
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* El icono de las 3 rayitas verticales (estilo minimalista Apple) */
+.menu-hint-icon {
+    width: 4px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0; /* Invisible por defecto */
+}
+
+/* Solo se ve cuando estamos en Fullscreen */
+.iphone-window:fullscreen .menu-hint-icon {
+    opacity: 1;
+}
+
+.iphone-window:fullscreen .side-menu-trigger:hover .menu-hint-icon {
+    background: var(--apple-accent);
+    box-shadow: 0 0 15px var(--apple-accent);
+    transform: scaleX(1.5);
+}
+
+/* --- AJUSTE DEL MENÚ LATERAL --- */
+.side-menu {
+    position: absolute;
+    left: -250px; /* Escondido */
+    top: 50px;
+    bottom: 0;
+    width: 250px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 110;
+    padding: 40px 20px;
+    transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Al pasar el ratón por el trigger o el menú, este sale */
+.side-menu-trigger:hover + .side-menu,
+.side-menu:hover {
+    left: 0;
+}
+
+/* Ocultar el icono indicador cuando el menú ya está abierto */
+.side-menu:hover ~ .side-menu-trigger .menu-hint-icon {
+    opacity: 0;
+}
+
+/* ==========================================================================
+   FIN DEL ARCHIVO CSS
+   ========================================================================== */
